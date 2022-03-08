@@ -1,0 +1,60 @@
+import UIKit
+
+/**:
+ 
+ #isPrime
+ 
+ This function determines whether the given integer parameter is a prime number. A prime number is defined by being a number
+ whose only mutliples is 1 and the number itself.
+ 
+ I selected to do this program as I thought it would be fun and I was curious to see how I could design a robust soltion
+ 
+ One variable was defined in this program. It is a boolean value called prime that is returned at the end of the program after determining whether the given number is a prime number
+ 
+ @param: Integer - the number that is going to be checked to determine if the number is a prime number
+ @return: Bool - true means that the given number is a prime number and false is that the parameter is not a prime number
+ 
+ Pseudo code/ thinking process:
+ 
+ * want to iterate over all the numbers from 2 to the number - 1
+ 
+ variable prime to store if the number is prime or not
+ 
+ for 2 to the number -1{
+ 
+    for 2 to the number -1{
+    
+        if the number in the first loop * the index in the second loop is = to the parameter given
+        set the variable to false and break out the loop
+ 
+ }
+ 
+ */
+
+func isPrime(_ num: Int) -> Bool{
+    
+    if num <= 0{
+        print("Invalid entry. Number must be greater than 0")
+        return false
+    }
+    
+    if num == 1{
+        print("Note: 1 is co-prime")
+        return true
+    }
+    
+    var prime: Bool = true
+    
+    for i in 2...num-1{
+        for j in 2...num-1{
+            if i * j == num{
+                prime = false
+                break
+            }
+        }
+        if prime == false{
+            break
+        }
+    }
+    return prime
+}
