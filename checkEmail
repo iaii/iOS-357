@@ -1,0 +1,104 @@
+/**:
+ 
+ #checkEmail
+ 
+ This function determines the whether the given string parameter is a valid email address.
+  
+ I selected to do this program as I thought it would be really fun and challenging. I was curious to see how I could design a robust solution
+ 
+ Variables defined in the program:
+ *var validAt: boolean value that is set to true if there is an "@" symbol
+ *var validDot: boolean value that is set to true if there is an "." symbol
+ *var isSpace: is set to true if there is a space value after the dot
+ *var idxAt: integer value that stores the index of the "@"
+ *var idxDot: integer value that stores the index of the "."
+ *var message: the message that is going to be returned at the end of the program
+ *var count: integer value that counts the number of characters in the given string parameter
+ 
+ @param: String - the string that is going to be checked to determine if it is a valid email address
+ @return: String: the username of the email address or that the given parameter is not a valid email address given
+ 
+ ** Notes to consider about this program **:
+ *Text here is considered to be any character including numbers, special characters, and spaces
+ *A username can contaion numbers, special characters, and spaces as it is considered text in this context
+ *The string is considered invalid only if there are spaces AFTER the period that is after the @
+ *The string can also be considered invalid if there is no "." after the "@"
+ 
+ Pseudo code/ thinking process:
+ 
+ var validAt = false
+ var validDot = false
+ var isSpace = false
+ 
+ var idxAt = -1
+ var idxDot = -1
+ 
+ var message: String
+ 
+ var count = 0
+     
+ for i in s{
+     if there is a "@"{
+         validAt = true
+         idxAt = count
+     }
+     
+     if if there is == "." and there is an @ and and the @ is before the current index{
+         validDot = true
+         idxDot = count
+     }
+     
+     if there is a "." and there is a space AFTER the period{
+         isSpace = true
+     }
+     count += 1 // increase the count by 1
+ }
+     
+ if there is a "@" and there is a "." && there are no spaces after the "." and "." is not the last index (ie there is text after the period and "@" is before the "."{
+     message = String(s.prefix(idxAt))
+ }else{
+     message = "Provide a valid email"
+ }
+ 
+ return the message
+ 
+ */
+
+func checkEmail(_ s: String) -> String{
+    
+    var validAt = false
+    var validDot = false
+    var isSpace = false
+    
+    var idxAt = -1
+    var idxDot = -1
+    
+    var message: String
+    
+    var count = 0
+        
+    for i in s{
+        if i == "@"{
+            validAt = true
+            idxAt = count
+        }
+        
+        if i == "." && validAt && idxAt < count{
+            validDot = true
+            idxDot = count
+        }
+        
+        if validDot == true && i == " "{
+            isSpace = true
+        }
+        count += 1
+    }
+        
+    if validAt && validDot && (isSpace == false) && (idxDot + 1 < count) && (idxAt < idxDot){
+        message = String(s.prefix(idxAt))
+    }else{
+        message = "Provide a valid email"
+    }
+    
+    return message
+}
